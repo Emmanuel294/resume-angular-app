@@ -1,0 +1,31 @@
+<div class="">
+    <h1>{{pageTitle}}</h1>
+    <p *ngIf="status !=  200">
+        Registrate en nuestra plataforma para crear nuevos posts y mucho mas.
+    </p>      
+
+    <div class="" *ngIf="status == 200">
+        El registro se ha completado correctamente, <a [routerLink]="['/login']">Logeate aquí</a>
+    </div>
+    <div class="" *ngIf="status == 400">
+            El registro no se ha completado correctamente, vuelve a intentar más tarde.
+    </div>
+    
+    <!--FORMULARIO DE REGISTRO-->
+    <form class="" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)"> 
+        <div class="">
+            <label for="email">E-Mail</label>
+            <input type="email" name="email" class="" #email="ngModel" [(ngModel)]="user.email" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
+
+            <small *ngIf="!email.valid && email.touched" class="">El email no es valido</small>
+        </div>
+        <div class="">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="" #password="ngModel" [(ngModel)]="user.password" required>
+
+            <small *ngIf="!password.valid && password.touched" class="">La contraseña no es valida</small>
+        </div>
+
+        <input type="submit" value="Registrarme" class="" [disabled]="loginForm.invalid">
+    </form>
+</div>
