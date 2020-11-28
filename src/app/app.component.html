@@ -4,13 +4,11 @@
   <span class="title">
     {{title}}
   </span>
-  <img/>
-</div>
-
-<div class="content">
-  <ul>
-    <li><a [routerLink]="['/login']">LogIn</a></li>
-    <li><a [routerLink]="['/register']">Register</a></li>
-  </ul>
+  <div class="content">
+    <ul class="nav nav-tabs" *ngIf="!identity">
+      <li class="nav-item"><a class="nav-link" [routerLink]="['/login']" [routerLinkActive]="['active']">LogIn</a></li>
+      <li class="nav-item"><a class="nav-link" [routerLink]="['/register']" [routerLinkActive]="['active']">Register</a></li>
+    </ul>
+  </div>
 </div>
 <router-outlet></router-outlet>

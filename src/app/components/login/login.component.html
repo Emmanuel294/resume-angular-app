@@ -1,31 +1,26 @@
-<div class="">
-    <h1>{{pageTitle}}</h1>
+<div class="box-form">
     <p *ngIf="status !=  200">
-        Registrate en nuestra plataforma para crear nuevos posts y mucho mas.
+        Login to the platform to star creating your resume.
     </p>      
-
-    <div class="" *ngIf="status == 200">
-        El registro se ha completado correctamente, <a [routerLink]="['/login']">Logeate aquí</a>
-    </div>
-    <div class="" *ngIf="status == 400">
-            El registro no se ha completado correctamente, vuelve a intentar más tarde.
+    <div class="alert-danger alert col-md-6 mt-3" *ngIf="status == 400">
+            Can not access. Please retry later.
     </div>
     
     <!--FORMULARIO DE REGISTRO-->
-    <form class="" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)"> 
-        <div class="">
+    <form class="basic-form" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)"> 
+        <div class="form-group">
             <label for="email">E-Mail</label>
-            <input type="email" name="email" class="" #email="ngModel" [(ngModel)]="user.email" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
+            <input type="email" name="email" class="form-control" #email="ngModel" [(ngModel)]="user.email" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
 
-            <small *ngIf="!email.valid && email.touched" class="">El email no es valido</small>
+            <small *ngIf="!email.valid && email.touched" class="form-text text-muted">Invalid email</small>
         </div>
-        <div class="">
+        <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" name="password" class="" #password="ngModel" [(ngModel)]="user.password" required>
+            <input type="password" name="password" class="form-control" #password="ngModel" [(ngModel)]="user.password" required>
 
-            <small *ngIf="!password.valid && password.touched" class="">La contraseña no es valida</small>
+            <small *ngIf="!password.valid && password.touched" class="form-text text-muted">Invalid password</small>
         </div>
 
-        <input type="submit" value="Registrarme" class="" [disabled]="loginForm.invalid">
+        <input type="submit" value="Login" class="btn btn-primary" [disabled]="loginForm.invalid">
     </form>
 </div>

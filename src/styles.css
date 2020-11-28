@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+.box-form{
+    width:30%;
+    height: auto;
+    -moz-box-shadow: 3px 6px 5px #000000;
+    -webkit-box-shadow: px 6px 5px #000000;
+    box-shadow: 3px 6px 5px #000000;
+    border-bottom-right-radius:10px;
+    border-bottom-left-radius:10px;
+    background-color: white;
+}
+
+.basic-form{
+    padding:10px;
+}
+
+body{
+    background-color: rgba(59, 163, 203, 0.9);
+}
+
+footer{
+    background-color: rgba(54, 140, 203, 0.8);
+}

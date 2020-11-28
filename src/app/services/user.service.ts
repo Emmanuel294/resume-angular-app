@@ -25,7 +25,6 @@ export class UserService{
         let params = json;
 
         let headers = new HttpHeaders().set('Content-Type','application/json');
-
         return this._http.post(this.url+'users', params,{headers:headers});
     }
 
@@ -35,4 +34,25 @@ export class UserService{
 
         return this._http.post(this.url+'users/login', params,{headers:headers});
     }
+
+    getIdentity(){
+        let identity = localStorage.getItem('identity');
+        if(identity && identity != "undefined" ){
+          this.identity = identity;
+        }else{
+            this.identity = null;
+        }
+
+        return this.identity;
+      }
+    
+      getToken(){
+        let token = localStorage.getItem('token');
+        if(token && token != "undefined"){
+            this.token = token;
+        }else{
+            this.token = null;
+        }
+        return this.token;
+      }
 }

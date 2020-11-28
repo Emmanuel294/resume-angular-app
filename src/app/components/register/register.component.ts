@@ -13,6 +13,7 @@ export class RegisterComponent implements OnInit {
   public pageTitle:string;
   public user:User;
   public status:number;
+  public message:string;
 
   constructor(
     private _userService:UserService,
@@ -33,13 +34,16 @@ export class RegisterComponent implements OnInit {
     this._userService.register(this.user).subscribe(
       response =>{
         if(response.status_code == 200){
-          this.status = response.status_code;
-          form.reset();
-          //this._router.navigate(['login']);
+          this.message = response.message;
+          if(this.message == 'success'){
+            this.status = response.status_code;
+            form.reset();
+          }else{
+            this.status = 400;
+          }
         }else{
           this.status = 400;
         }
-
       },
       error => {
         this.status = 400;

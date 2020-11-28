@@ -1,0 +1,21 @@
+.toolbar{
+    min-width: 10%;
+    min-height: 50px;
+    background-color: rgba(54, 140, 203, 0.8);
+}
+
+.title{
+    color:white;
+    font-size:2rem;
+    text-shadow:-2px 6px 4px #000000;
+    padding:10px;
+}
+
+.nav{
+    margin-left:5px;
+    border-bottom: 0px;
+}
+
+.nav-link{
+    color:white;
+}

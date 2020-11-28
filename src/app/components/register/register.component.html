@@ -1,43 +1,42 @@
-<div class="">
-    <h1>{{pageTitle}}</h1>
+<div class="box-form">
     <p *ngIf="status !=  200">
-        Registrate en nuestra plataforma para crear nuevos posts y mucho mas.
+        Register on the platform to create your Resume
     </p>      
 
-    <div class="" *ngIf="status == 200">
-        El registro se ha completado correctamente, <a [routerLink]="['/login']">Logeate aquí</a>
+    <div class="alert alert-success" *ngIf="status && status == 200">
+        User registered successfully, <a [routerLink]="['/login']">Login here</a>
     </div>
-    <div class="" *ngIf="status == 400">
-            El registro no se ha completado correctamente, vuelve a intentar más tarde.
+    <div class="alert alert-danger" *ngIf="status && status == 400">
+            Error creating new user: {{message}}.
     </div>
     
     <!--FORMULARIO DE REGISTRO-->
-    <form class="" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)"> 
-        <div class="">
+    <form class="basic-form" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)"> 
+        <div class="form-group">
             <label for="name">Name</label>
             <input type="text" name="name" class="form-control" #name="ngModel" [(ngModel)]="user.name" required pattern="[a-zA-Z]+">
 
-            <small *ngIf="!name.valid && name.touched" class="">El nombre no es valido</small>
+            <small *ngIf="!name.valid && name.touched" class="form-text text-muted">Invalid name</small>
         </div>
-        <div class="">
+        <div class="form-group">
             <label for="surname">Last Name</label>
-            <input type="text" name="surname" class="" #surname="ngModel" [(ngModel)]="user.surname" required pattern="[a-zA-Z- ]+">
+            <input type="text" name="surname" class="form-control" #surname="ngModel" [(ngModel)]="user.surname" required pattern="[a-zA-Z- ]+">
 
-            <small *ngIf="!surname.valid && surname.touched" class="">Los apellido no son validos</small>
+            <small *ngIf="!surname.valid && surname.touched" class="form-text text-muted">Invalid Last name</small>
         </div>
-        <div class="">
+        <div class="form-group">
             <label for="email">E-Mail</label>
-            <input type="email" name="email" class="" #email="ngModel" [(ngModel)]="user.email" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
+            <input type="email" name="email" class="form-control" #email="ngModel" [(ngModel)]="user.email" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
 
-            <small *ngIf="!email.valid && email.touched" class="">El email no es valido</small>
+            <small *ngIf="!email.valid && email.touched" class="form-text text-muted">Invalid Email</small>
         </div>
-        <div class="">
+        <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" name="password" class="" #password="ngModel" [(ngModel)]="user.password" required>
+            <input type="password" name="password" class="form-control"#password="ngModel" [(ngModel)]="user.password" required>
 
-            <small *ngIf="!password.valid && password.touched" class="">La contraseña no es valida</small>
+            <small *ngIf="!password.valid && password.touched" class="form-text text-muted">Invalid Password</small>
         </div>
 
-        <input type="submit" value="Registrarme" class="" [disabled]="registerForm.invalid">
+        <input type="submit" value="Register" class="form-text btn btn-primary" [disabled]="registerForm.invalid">
     </form>
 </div>
