@@ -14,6 +14,8 @@ export class RegisterComponent implements OnInit {
   public user:User;
   public status:number;
   public message:string;
+  public identity;
+  public token;
 
   constructor(
     private _userService:UserService,
@@ -50,6 +52,18 @@ export class RegisterComponent implements OnInit {
         console.log(<any>error);
       }
     ); 
+  }
+
+  ngDoCheck(){
+    this.loadUser();
+  }
+
+  loadUser(){
+    this.identity = this._userService.getIdentity();
+    this.token = this._userService.getToken();
+    if(this.identity && this.token){
+      this._router.navigate(['home']);
+    }
   }
 
 }

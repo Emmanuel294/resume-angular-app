@@ -1,14 +1,43 @@
 
 <!-- Toolbar -->
-<div class="toolbar">
+<nav class="navbar navbar-expand-lg  toolbar">
   <span class="title">
     {{title}}
   </span>
-  <div class="content">
+  <div class="content" id="navbarSupportedContent">
+    <ul class="nav nav-tabs identified" *ngIf="identity">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/resumes']" [routerLinkActive]="['active']">Resumes</a>
+      </li>
+    </ul>
     <ul class="nav nav-tabs" *ngIf="!identity">
       <li class="nav-item"><a class="nav-link" [routerLink]="['/login']" [routerLinkActive]="['active']">LogIn</a></li>
       <li class="nav-item"><a class="nav-link" [routerLink]="['/register']" [routerLinkActive]="['active']">Register</a></li>
     </ul>
+    
+    <ul class="navbar-nav navbar-right" *ngIf="identity">
+      <li *ngIf="identity && identity.image" class="nav-item">
+        <div class="avatar_mask">
+          <img src="{{url + 'user/avatar/' + identity.image}}" class="avatar_nav">
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle options" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{identity.name+' '+identity.surname}}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" [routerLink]="['/crear-entrada']">Crear entrada</a>
+              <a class="dropdown-item" [routerLink]="['/crear-categoria']">Crear categoria</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" [routerLink]="['/perfil',identity.sub]">Mi perfil</a>
+              <a class="dropdown-item" [routerLink]="['/ajustes']">Ajustes</a>
+              <a class="dropdown-item" [routerLink]="['/logout/1']">Cerrar Sesión</a>
+            </div>
+        </li>
+    </ul>
   </div>
-</div>
+</nav>
 <router-outlet></router-outlet>

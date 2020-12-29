@@ -11,14 +11,18 @@ import { RegisterComponent } from './components/register/register.component';
 
 import {UserService} from './services/user.service';
 import { DefaultComponent } from './components/default/default.component';
+import { HomeComponent } from './components/home/home.component';
+import { ResumeService } from './services/resume.service';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     UserComponent,
     LoginComponent,
     RegisterComponent,
-    DefaultComponent
+    DefaultComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,8 @@ import { DefaultComponent } from './components/default/default.component';
   ],
   providers: [
     appRoutingProviders,
-    UserService
+    UserService,
+    ResumeService
   ],
   bootstrap: [AppComponent]
 })

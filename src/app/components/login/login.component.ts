@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
     this.user = new User(1,"","","","","");
    }
 
-  ngOnInit(): void {
+  ngOnInit(){
+    this.logOut();
   }
 
   onSubmit(form){
@@ -36,10 +37,14 @@ export class LoginComponent implements OnInit {
         console.log(response);
         this.token = response.user_data.token;
         if(response.status_code == 200){
-          this.identity = response.user_data.email;
-          console.log(this.identity);
+          this.identity = response.user_data;
+          this.identity.password = '';
+          this.identity.email = '';
+          this.identity.token = '';
+          this.identity.createAt = '';
+          
           localStorage.setItem('token',this.token);
-          localStorage.setItem('identity',this.identity);
+          localStorage.setItem('identity',JSON.stringify(this.identity));
           this.status = response.status;
           form.reset();
           this._router.navigate(['home']);
@@ -55,5 +60,34 @@ export class LoginComponent implements OnInit {
     ); 
 
   }
+
+  ngDoCheck(){
+    this.loadUser();
+  }
+
+  loadUser(){
+    this.identity = this._userService.getIdentity();
+    this.token = this._userService.getToken();
+    if(this.identity && this.token){
+      this._router.navigate(['home']);
+    }
+  }
+
+  logOut(){
+    this._route.params.subscribe(params => {
+      let logout = +params['sure'];
+      
+      if(logout == 1){
+        localStorage.removeItem('identity');
+        localStorage.removeItem('token');
+
+        this.identity = null;
+        this.token = null;
+
+        //Redireccion a la pagina principal
+        this._router.navigate(['home']);
+      }
+    });
+  } 
 
 }

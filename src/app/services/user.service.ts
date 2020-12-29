@@ -36,7 +36,7 @@ export class UserService{
     }
 
     getIdentity(){
-        let identity = localStorage.getItem('identity');
+        let identity = JSON.parse(localStorage.getItem('identity'));
         if(identity && identity != "undefined" ){
           this.identity = identity;
         }else{
