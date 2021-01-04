@@ -15,8 +15,6 @@ export class DefaultComponent implements OnInit {
   public identity;
   public token;
   public pageTitle:string;
-  public resumes:Array<resume>;
-  public resumesMessage:string;
   constructor(
     private _userService:UserService,
     private _resumeService:ResumeService
@@ -28,29 +26,8 @@ export class DefaultComponent implements OnInit {
   }
 
   ngOnInit(){
-    if(this.identity){
-      this.getResumes();
-    }
   }
 
-  getResumes(){
-    this._resumeService.getResumes().subscribe(
-      response => {
-        if(response.status_code == 200){
-          if(response.message != 'success'){
-            this.resumes = response.resumes;
-            this.resumesMessage = response.message;
-            return;
-          }
-          this.resumes = response.resumes;
-          this.resumesMessage = '';
-        }
-        
-      },
-      error => {
-        console.log(<any>error);
-      }
-    );
-  }
+  
 
 }

@@ -1,0 +1,32 @@
+<div class="loading" *ngIf="!resumes && identity">
+    <div class="spinner-border" role="status">
+    </div>
+</div>
+<div class="container-fluid" *ngIf="resumes && identity">
+    <div *ngIf="resumesMessage == 'no content'">
+        <h1>You have not resumes.</h1>
+        <a class="btn btn-primary">Create Resume</a>
+        <hr>
+    </div>
+
+    <div *ngIf="resumesMessage == ''">
+        <h1>Your Resumes</h1>
+        <hr>
+    </div>
+
+    <div class="card-columns">
+        <article class="card w-100 mt-3" *ngFor="let resume of resumes">
+            <div class="card-header">
+                <div class="w-100">
+                    <img src="assets/resumes_img/resume_01.png" class="w-100" alt="resume_img">
+                </div>
+            </div>
+            <div class="card-body">
+                <a class="btn btn-success">Edit</a>
+                <a class="btn btn-primary" [routerLink]="['/resumes',resume.id]">View</a>
+            </div>
+        
+        </article>
+    </div>
+    
+</div>

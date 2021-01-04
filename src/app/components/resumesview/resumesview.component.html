@@ -1,0 +1,37 @@
+<div class="loading" *ngIf="!resume && identity">
+    <div class="spinner-border" role="status">
+      </div>
+</div>
+
+<div class="container-fluid" *ngIf="resume && identity">
+    <div *ngIf="resumesMessage == 'no content'">
+        <h1>No resume found.</h1>
+    </div>
+
+    <div class="">
+        <div class="infp">
+            <h1 class="name">{{identity.name}} {{identity.surname}}</h1>
+            <div class="col-sm-2">
+                <div>
+                    Image <h3>{{identity.email}}</h3>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="resume.projects">
+            <h2>Projects And Experience</h2>
+            <div *ngFor="let project of resume.projects">
+                <h6>{{project.name}}</h6>
+                <p>{{project.description}}</p>
+            </div>
+        </div>
+
+        <div *ngIf="resume.projects">
+            <h2>Leadership</h2>
+            <div *ngFor="let leadership of resume.leaderships">
+                <p>{{leadership.description}}</p>
+            </div>
+        </div>
+    </div>
+    
+</div>
+

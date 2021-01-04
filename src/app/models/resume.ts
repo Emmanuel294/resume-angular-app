@@ -1,7 +1,9 @@
+import { project } from "./project";
+
 export class resume{
     constructor(
         public id:number,
-        public projects:string[][]
+        public projects:Array<project>
     ){
     }
 }

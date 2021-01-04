@@ -13,6 +13,8 @@ import {UserService} from './services/user.service';
 import { DefaultComponent } from './components/default/default.component';
 import { HomeComponent } from './components/home/home.component';
 import { ResumeService } from './services/resume.service';
+import { ResumesComponent } from './components/resumes/resumes.component';
+import { ResumesviewComponent } from './components/resumesview/resumesview.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ResumeService } from './services/resume.service';
     LoginComponent,
     RegisterComponent,
     DefaultComponent,
-    HomeComponent
+    HomeComponent,
+    ResumesComponent,
+    ResumesviewComponent
   ],
   imports: [
     BrowserModule,

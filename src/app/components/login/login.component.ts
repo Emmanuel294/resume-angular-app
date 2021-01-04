@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         if(response.status_code == 200){
           this.identity = response.user_data;
           this.identity.password = '';
-          this.identity.email = '';
+          //this.identity.email = '';
           this.identity.token = '';
           this.identity.createAt = '';
           
