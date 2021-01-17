@@ -1,0 +1,60 @@
+.form-container{
+    margin-left: 20%;
+    margin-right: 20%;
+}
+.tool-container{
+    padding: 6px 0px 0px 5px;
+    height: 40px;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 5px;
+}
+
+
+.all-tools-container{
+    margin-top:10px;
+}
+
+.current-tools{
+    background-color: rgba(0, 143, 255, 0.9);
+    border:solid 1px #e6eaeb;
+    -moz-border-radius-topleft: 11px;
+    -moz-border-radius-topright:11px;
+    -moz-border-radius-bottomleft:11px;
+    -moz-border-radius-bottomright:11px;
+    -webkit-border-top-left-radius:11px;
+    -webkit-border-top-right-radius:11px;
+    -webkit-border-bottom-left-radius:11px;
+    -webkit-border-bottom-right-radius:11px;
+    border-top-left-radius:11px;
+    border-top-right-radius:11px;
+    border-bottom-left-radius:11px;
+    border-bottom-right-radius:11px;
+    padding-right: -20px;
+}
+
+.tools{
+    list-style: none;
+}
+
+.tools li label{
+    margin-bottom: 5px;
+    border: 0px;
+}
+
+.new-tools{
+    background-color: rgba(37, 91, 255, 0.9)!important;
+}
+
+.tools li{
+    margin-right: 5px;
+    display: inline;
+}
+
+.tool-checkbox{
+    display: none;
+}
+.tool-selected{
+    background-color: rgba(57, 104, 160, 0.9);
+    border: 0px;
+}

@@ -16,10 +16,6 @@ export class UserService{
         this.url = global.url;
     }
 
-    test(){
-        return 'Hello World';
-    }
-
     register(user):Observable<any>{
         let json = JSON.stringify(user);
         let params = json;

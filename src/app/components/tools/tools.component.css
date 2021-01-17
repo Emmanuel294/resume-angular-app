@@ -1,0 +1,19 @@
+.tool-container{
+    padding: 18px;
+    height: 65px;
+    font-weight: bold;
+}
+app-editable{
+    float:left;
+}
+
+.tool-container .btn-danger{
+    float: right;
+    margin-top: -5px;
+    margin-right: -15px;
+}
+
+.create{
+    font-weight: normal;
+    text-decoration: none;
+}

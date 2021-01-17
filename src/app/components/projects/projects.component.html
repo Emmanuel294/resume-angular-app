@@ -1,0 +1,43 @@
+<div class="loading" *ngIf="!projects && identity">
+    <div class="spinner-border" role="status">
+    </div>
+</div>
+<div class="container-fluid" *ngIf="projects && identity">
+    <div *ngIf="projectsMessage == 'no content'">
+        <h1>You have no projects.</h1>
+        <button type="button" [routerLink]="['/projects/create']" class="btn btn-success add-button">Add new project</button>
+        <hr>
+    </div>
+
+    <div *ngIf="projectsMessage == ''">
+        <h1>Your Projects</h1>
+        <hr>
+
+        <button type="button" [routerLink]="['/projects/create']" class="btn btn-success add-button">Add new project</button>
+
+        <div class="card-columns">
+            <article class="card" *ngFor="let project of projects;index as index">
+                <div class="card-header">
+                    <h5 class="card-title">{{project.name}}</h5>
+                    <p class="project-dates"><span>From {{project.startedDate|date:'MMMM dd yyyy'}}</span> To 
+                        <span *ngIf="!project.currentlyWorking">{{project.endDate|date:'MMMM dd yyyy'}}</span><span *ngIf="project.currentlyWorking"> Present</span></p>
+                    <p>{{project.company}}</p>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{project.description}}</p>
+                    <div class="tools-container">
+                        <ul class="tools">
+                            <li *ngFor="let tool of project.tools">
+                                <a class="btn btn-info">{{tool.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <button type="button" class="btn btn-primary edit-button" [routerLink]="['/projects/edit',project.id]">Edit</button>
+                    <button type="button" class="btn btn-danger" (click)="deleteProject(project,index)">Delete</button>
+                </div>
+
+            </article>
+        </div>
+    </div>
+</div>

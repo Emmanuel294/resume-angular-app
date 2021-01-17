@@ -1,0 +1,32 @@
+.add-button{
+    margin-bottom: 20px;
+}
+
+
+.project-dates{
+    font-family: Sans-serif;
+    color:#808080;
+}
+
+
+.tools-container{
+    margin-left: -50px;
+}
+
+.tools{
+    list-style: none;
+}
+
+.tools li a{
+    pointer-events: none;
+    margin-bottom: 5px;
+}
+
+.tools li{
+    margin-right: 5px;
+    display: inline;
+}
+
+.edit-button{
+    margin-right: 5px;
+}

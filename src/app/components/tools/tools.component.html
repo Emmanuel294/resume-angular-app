@@ -1,0 +1,34 @@
+<div class="loading" *ngIf="!tools && identity">
+    <div class="spinner-border" role="status">
+    </div>
+</div>
+<div class="container-fluid" *ngIf="tools && identity">
+    <div *ngIf="toolsMessage == 'no content'">
+        <h1>You have no tools.</h1>
+    </div>
+
+    <div>
+        <h1 *ngIf="toolsMessage == ''">Your Tools</h1>
+        <hr>
+
+        <div class="card-columns">
+            <article class="card">
+                <div class="card-img-top tool-container create">
+                    <app-editable class="tool-info"
+                    [value]="'Create New tool'"
+                    (valueChange)="createTool( $event )">
+                    </app-editable>
+                </div>
+            </article>
+            <article class="card" *ngFor="let tool of tools; index as index">
+                <div class="card-body tool-container">
+                    <app-editable class="tool-info"
+                    [value]="tool.name"
+                    (valueChange)="saveTooltName( tool, $event )">
+                    </app-editable>
+                    <a (click)="deleteTool(tool,index)" class="btn btn-danger align-self-end">X</a>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>

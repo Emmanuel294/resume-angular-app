@@ -1,0 +1,60 @@
+<div class="form-container">    <!-- PROJECT FORM -->
+    <form class="basic-form" #projectForm="ngForm" (ngSubmit)="onSubmit(projectForm)"> 
+        <div class="form-group">
+            <label for="name">Project Name</label>
+            <input type="text" name="name" class="form-control" #name="ngModel" [(ngModel)]="project.name" required>
+
+            <small *ngIf="!name.valid && name.touched" class="form-text text-muted">Invalid name</small>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea type="text" name="description" class="form-control" #description="ngModel" [(ngModel)]="project.description" required></textarea>
+
+            <small *ngIf="!description.valid && description.touched" class="form-text text-muted">Invalid Description</small>
+        </div>
+        <div>
+            <label for="startedAt">Start Date</label>
+            <input type="date" max="{{currentDate|date:'yyyy-MM-dd'}}" name="startedAt" class="form-control" #startDate="ngModel" [ngModel]="project.startedDate | date:'yyyy-MM-dd'" (ngModelChange)="project.startedDate = $event" required placeholder="YYYY-MM-DD" (change)="changeStarted(project.startedDate,project.endDate)">
+        </div>
+
+        <div>
+            <label for="endDate">End Date</label>
+            <input type="date" required="!project.currentlyWorking" min="{{minDate|date:'yyyy-MM-dd'}}" max="{{currentDate|date:'yyyy-MM-dd'}}" name="endDate" class="form-control" #endDate="ngModel" [ngModel]="project.endDate | date:'yyyy-MM-dd'" (ngModelChange)="project.endDate = $event" placeholder="YYYY-MM-DD" (change)="checkValid(project.startedDate,project.endDate)" [disabled]="project.currentlyWorking || !project.startedDate"> 
+            
+            <input type="checkbox" name="currently" [(ngModel)]="project.currentlyWorking" id="currently">
+            <label for="currently">
+                Currently Working
+              </label>
+        </div>
+
+        <div>
+            <h6>Tools Added</h6>
+            <div class="tools-container">
+                <ul class="tools">
+                    <li *ngFor="let tool of project.tools">
+                        <a class="btn btn-info new-tools">{{tool.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="tool-container create">
+            <app-editable class="create-tool"
+                    [value]="'Create New tool'"
+                    (valueChange)="createTool( $event )">
+                    </app-editable>
+        </div>
+        <div *ngIf="tools" class="all-tools-container">
+            <h6>All Tools</h6>
+            <div class="tools-container current-tools">
+                <ul class="tools">
+                    <li *ngFor="let tool of tools; index as index">
+                        <label for="{{index}}" class="form-check-label btn btn-info" [ngClass]="{'tool-selected' : project.tools && project.tools.includes(tool)}">{{tool.name}}</label><input type="checkbox" class="form-check-input tool-checkbox" id="{{index}}" (change)="moveTool($event)">
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <input *ngIf="!isEditing" type="submit" value="Create" class="form-text btn btn-primary" [disabled]="projectForm.invalid">
+        <input *ngIf="isEditing" type="submit" value="Save" class="form-text btn btn-primary" [disabled]="projectForm.invalid">
+    </form>
+</div>

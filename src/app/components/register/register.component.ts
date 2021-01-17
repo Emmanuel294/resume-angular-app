@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
   ) { 
 
     this.pageTitle = 'Create User';
-    this.user = new User(1,"","","","","");
+    this.user = new User(0,"","","","","");
   }
 
   ngOnInit(): void {
